@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "name": "Math Formulas",
+    "slug": "math-formulas-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "description": "Comprehensive offline mathematics formulas app with Material You design",
+    "primaryColor": "#2196F3",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2196F3"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.mathformulas.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#2196F3"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.mathformulas.app",
+      "permissions": []
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-sqlite"
+    ]
+  }
+}
