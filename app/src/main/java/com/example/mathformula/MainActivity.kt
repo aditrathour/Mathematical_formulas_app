@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
 import com.example.mathformula.ui.theme.MathFormulaTheme
+import com.example.mathformula.ui.navigation.MathNavHost
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -12,7 +13,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MathFormulaTheme {
-                // TODO: Add navigation host and initial UI
+                MathNavHost()
             }
         }
     }
