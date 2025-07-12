@@ -88,4 +88,7 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    // MathView for LaTeX rendering
+    implementation("io.github.kexanie.library:MathView:0.0.7")
 }

@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.mathformula.ui.screens.home.HomeScreen
+import com.example.mathformula.ui.screens.detail.FormulaDetailScreen
 
 @Composable
 fun MathNavHost(modifier: Modifier = Modifier) {
@@ -42,7 +43,7 @@ fun MathNavHost(modifier: Modifier = Modifier) {
             route = Screen.Formula.route,
             arguments = listOf(navArgument("formulaId") { type = NavType.LongType })
         ) { backStackEntry ->
-            // TODO: Formula detail screen
+            FormulaDetailScreen()
         }
     }
 }
