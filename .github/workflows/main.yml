@@ -1,0 +1,33 @@
+name: Build Android APK
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get my recipe (code)
+        uses: actions/checkout@v4
+
+      - name: Set up cooking tools (Java)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17' # Keep this as '17' for now
+
+      - name: Prepare the cooking machine
+        run: chmod +x ./gradlew
+
+      - name: Start cooking the app (APK)
+        run: ./gradlew assembleDebug
+
+      - name: Put APK in take-out box
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-app-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
