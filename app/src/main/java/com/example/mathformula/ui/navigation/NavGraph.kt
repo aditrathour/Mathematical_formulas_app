@@ -10,6 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.mathformula.ui.screens.home.HomeScreen
 import com.example.mathformula.ui.screens.detail.FormulaDetailScreen
+import com.example.mathformula.ui.screens.category.CategoryScreen
 
 @Composable
 fun MathNavHost(modifier: Modifier = Modifier) {
@@ -35,8 +36,9 @@ fun MathNavHost(modifier: Modifier = Modifier) {
                 navArgument("categoryName") { type = NavType.StringType }
             )
         ) { backStackEntry ->
-            // TODO: Category formula list screen
-            // val categoryId = backStackEntry.arguments?.getLong("categoryId") ?: 0L
+            CategoryScreen(onFormulaClick = { formulaId ->
+                navController.navigate(Screen.Formula.createRoute(formulaId))
+            })
         }
 
         composable(
