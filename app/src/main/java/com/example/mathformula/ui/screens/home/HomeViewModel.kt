@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,10 +19,12 @@ class HomeViewModel @Inject constructor(
 
     val uiState: StateFlow<HomeUiState> = categoryRepository.getCategories()
         .map { HomeUiState.Success(it) as HomeUiState }
+        .catch { emit(HomeUiState.Error(it.message ?: "Error loading categories")) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), HomeUiState.Loading)
 }
 
 sealed interface HomeUiState {
     object Loading : HomeUiState
     data class Success(val categories: List<CategoryEntity>) : HomeUiState
+    data class Error(val message: String) : HomeUiState
 }

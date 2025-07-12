@@ -8,4 +8,6 @@ sealed class Screen(val route: String) {
     object Formula : Screen("formula/{formulaId}") {
         fun createRoute(id: Long) = "formula/$id"
     }
+
+    object Search : Screen("search")
 }

@@ -29,6 +29,11 @@ fun FormulaDetailScreen(
             CircularProgressIndicator()
         }
         is FormulaDetailUiState.Success -> FormulaDetailContent(state.data, modifier)
+        is FormulaDetailUiState.Error -> Text(
+            text = state.message,
+            color = MaterialTheme.colorScheme.error,
+            modifier = Modifier.padding(16.dp)
+        )
     }
 }
 

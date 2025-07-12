@@ -19,7 +19,7 @@ class FormulaRepository @Inject constructor(
     fun getFormula(id: Long): Flow<FormulaWithCategory> = formulaDao.getFormula(id)
 
     fun searchFormulas(query: String): Flow<List<FormulaWithCategory>> =
-        formulaDao.searchFormulas(query)
+        formulaDao.searchFormulas("%$query%")
 
     suspend fun insertAll(formulas: List<FormulaEntity>) = formulaDao.insertAll(formulas)
 }

@@ -23,7 +23,7 @@ interface FormulaDao {
     fun getFormula(id: Long): Flow<FormulaWithCategory>
 
     @Transaction
-    @Query("SELECT formulas.* FROM formulas JOIN formulas_fts ON formulas.rowid = formulas_fts.rowid WHERE formulas_fts MATCH :query")
+    @Query("SELECT * FROM formulas WHERE title LIKE :query OR explanation LIKE :query OR tips LIKE :query ORDER BY title ASC")
     fun searchFormulas(query: String): Flow<List<FormulaWithCategory>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

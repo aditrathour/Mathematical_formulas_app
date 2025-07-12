@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import com.example.mathformula.ui.screens.home.HomeScreen
 import com.example.mathformula.ui.screens.detail.FormulaDetailScreen
 import com.example.mathformula.ui.screens.category.CategoryScreen
+import com.example.mathformula.ui.screens.search.SearchScreen
 
 @Composable
 fun MathNavHost(modifier: Modifier = Modifier) {
@@ -25,8 +26,15 @@ fun MathNavHost(modifier: Modifier = Modifier) {
             HomeScreen(
                 onCategoryClick = { id, name ->
                     navController.navigate(Screen.Category.createRoute(id, name))
-                }
+                },
+                onSearchClick = { navController.navigate(Screen.Search.route) }
             )
+        }
+
+        composable(route = Screen.Search.route) {
+            SearchScreen(onFormulaClick = { formulaId ->
+                navController.navigate(Screen.Formula.createRoute(formulaId))
+            })
         }
 
         composable(

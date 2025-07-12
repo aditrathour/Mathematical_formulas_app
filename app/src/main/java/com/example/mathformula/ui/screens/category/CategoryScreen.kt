@@ -35,6 +35,11 @@ fun CategoryScreen(
             onFormulaClick = onFormulaClick,
             modifier = modifier
         )
+        is CategoryUiState.Error -> Text(
+            text = state.message,
+            color = MaterialTheme.colorScheme.error,
+            modifier = Modifier.padding(16.dp)
+        )
     }
 }
 

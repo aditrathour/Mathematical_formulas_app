@@ -91,4 +91,7 @@ dependencies {
 
     // MathView for LaTeX rendering
     implementation("io.github.kexanie.library:MathView:0.0.7")
+
+    // Pull-to-refresh
+    implementation("androidx.compose.material3:material3-pullrefresh:1.2.0-alpha06")
 }

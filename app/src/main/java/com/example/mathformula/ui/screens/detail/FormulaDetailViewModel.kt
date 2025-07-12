@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,10 +24,12 @@ class FormulaDetailViewModel @Inject constructor(
 
     val uiState: StateFlow<FormulaDetailUiState> = repository.getFormula(formulaId)
         .map { FormulaDetailUiState.Success(it) as FormulaDetailUiState }
+        .catch { emit(FormulaDetailUiState.Error(it.message ?: "Error")) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), FormulaDetailUiState.Loading)
 }
 
 sealed interface FormulaDetailUiState {
     object Loading : FormulaDetailUiState
     data class Success(val data: FormulaWithCategory) : FormulaDetailUiState
+    data class Error(val message: String) : FormulaDetailUiState
 }

@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.catch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,10 +27,12 @@ class CategoryViewModel @Inject constructor(
 
     val uiState: StateFlow<CategoryUiState> = repository.getFormulasByCategory(categoryId)
         .map { CategoryUiState.Success(it) as CategoryUiState }
+        .catch { emit(CategoryUiState.Error(it.message ?: "Error loading formulas")) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), CategoryUiState.Loading)
 }
 
 sealed interface CategoryUiState {
     object Loading : CategoryUiState
     data class Success(val formulas: List<FormulaWithCategory>) : CategoryUiState
+    data class Error(val message: String) : CategoryUiState
 }
